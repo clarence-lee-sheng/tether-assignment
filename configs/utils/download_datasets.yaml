@@ -1,0 +1,26 @@
+output_dir: data/raw
+tokenized_dir: data/tokenized
+tokenizer: HuggingFaceTB/SmolLM2-135M
+streaming: true
+tokenize: true
+
+datasets:
+  - dataset: HuggingFaceTB/smollm-corpus
+    subset: cosmopedia-v2
+    name: cosmopedia-v2
+    max_samples: 1000000
+
+  - dataset: HuggingFaceTB/smollm-corpus
+    subset: fineweb-edu-dedup
+    name: fineweb-edu-dedup
+    max_samples: 1000000
+ 
+  - dataset: nvidia/Nemotron-Pretraining-SFT-v1
+    subset: Nemotron-SFT-MATH
+    name: nemotron-sft-math
+    max_samples: 500000
+
+  - dataset: nvidia/Nemotron-CC-V2
+    subset: Diverse-QA
+    name: nemotron-qa
+    max_samples: 500000

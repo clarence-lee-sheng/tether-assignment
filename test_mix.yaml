@@ -1,0 +1,6 @@
+seq_len: 2048
+seed: 42
+datasets:
+  - path: data/tokenized/gsm8k_smollm2
+    weight: 1.0
+    name: gsm8k

@@ -1,0 +1,17 @@
+# Smollm + nemotron datasets 
+seq_len: 2048
+seed: 42
+datasets:
+  - path: data/tokenized/cosmopedia-v2/cosmopedia-v2
+    weight: 0.10588
+    name: cosmopedia-v2
+  - path: data/tokenized/fineweb-edu-dedup/fineweb-edu-dedup
+    weight: 0.49412
+    name: fineweb-edu-dedup
+  - path: data/tokenized/nemotron-qa/nemotron-qa
+    weight: 0.25
+    name: nemotron-qa
+  - path: data/tokenized/nemotron-sft-math/nemotron-sft-math
+    weight: 0.15
+    name: nemotron-pretraining-sft-v1-math
+

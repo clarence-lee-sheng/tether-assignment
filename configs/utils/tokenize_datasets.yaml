@@ -1,0 +1,28 @@
+# Tokenization configuration
+# Usage: python -m tether.tokenize_datasets --config configs/utils/tokenize_datasets.yaml
+
+# Global defaults
+input_dir: data/raw
+output_dir: data/tokenized
+tokenizer: HuggingFaceTB/SmolLM2-135M
+text_column: text
+batch_size: 1024
+add_bos: false
+add_eos: true
+
+datasets:
+  - name: cosmopedia-v2
+    dataset: HuggingFaceTB/smollm-corpus
+    subset: cosmopedia-v2
+
+  - name: fineweb-edu-dedup
+    dataset: HuggingFaceTB/smollm-corpus
+    subset: fineweb-edu-dedup
+
+  - name: nemotron-sft-math
+    dataset: nvidia/Nemotron-Pretraining-SFT-v1
+    subset: Nemotron-SFT-MATH
+
+  - name: nemotron-qa
+    dataset: nvidia/Nemotron-CC-V2
+    subset: Diverse-QA

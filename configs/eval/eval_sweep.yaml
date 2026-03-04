@@ -1,0 +1,35 @@
+# Multi-checkpoint evaluation sweep
+# Usage: tether eval --config configs/eval_sweep.yaml
+
+# Option A: auto-discover checkpoint-N or step_N dirs
+checkpoint_dir: checkpoints/smollm2_135m_hf_trainer
+last: 5   # only evaluate the last N checkpoints (omit for all)
+
+# Option B: explicit list (uncomment and remove checkpoint_dir/last above)
+# checkpoints:
+#   - exports/checkpoint-1000
+#   - exports/checkpoint-2000
+#   - exports/checkpoint-5000
+
+tasks:
+  - custom|mmlu_cf|0|1
+  - custom|hellaswag_cf|0|1
+  - custom|arc_cf:Easy|0|1
+  - custom|arc_cf:Challenge|0|1
+  - custom|winogrande_cf|0|1
+  - custom|piqa_cf|0|1
+
+output_dir: evals/sweep/
+custom_tasks: src/tether/eval/tasks.py
+save_details: true
+
+# vLLM settings
+dtype: float16
+max_model_length: 2048
+gpu_memory_utilization: 0.8
+tensor_parallel_size: 1   # set to number of GPUs
+
+generation_parameters:
+  max_new_tokens: 2048
+  temperature: 0.6
+  top_p: 0.95

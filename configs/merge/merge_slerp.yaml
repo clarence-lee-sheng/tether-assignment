@@ -1,0 +1,22 @@
+# SLERP merge of two checkpoints
+# Spherical linear interpolation — smooth interpolation on the weight hypersphere.
+# Requires exactly 2 checkpoints. The weight controls the interpolation
+# (0.5 = midpoint, 0.7 = closer to the second checkpoint).
+#
+# Usage:
+#   tether merge --config configs/merge_slerp.yaml
+
+checkpoints:
+  - tether-assessment/checkpoints/smollm2_135m_hf_trainer/checkpoint-2500
+  - tether-assessment/checkpoints/smollm2_135m_hf_trainer/checkpoint-2600
+
+# Interpolation weights (normalized to compute t parameter)
+weights: [0.3, 0.7]
+
+model: HuggingFaceTB/SmolLM2-135M
+model_type: training-state
+
+method: slerp
+
+output: exports/smollm2_135m_slerp
+dtype: bfloat16

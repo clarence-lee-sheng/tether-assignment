@@ -1,0 +1,11 @@
+# Based on smollm proportions 
+seq_len: 2048
+seed: 42
+datasets:
+  - path: data/tokenized_2/cosmopedia-v2/cosmopedia-v2
+    weight: 0.176
+    name: cosmopedia-v2
+  - path: data/tokenized_2/fineweb-edu-dedup/fineweb-edu-dedup
+    weight: 0.82333
+    name: fineweb-edu-dedup
+

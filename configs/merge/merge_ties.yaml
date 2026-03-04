@@ -1,0 +1,23 @@
+# TIES merge (Trim, Elect Sign & Merge)
+# Prunes low-magnitude deltas, resolves sign conflicts, then merges.
+# Good for combining checkpoints that have diverged from a shared base.
+#
+# Usage:
+#   tether merge --config configs/merge_ties.yaml
+
+checkpoint_dir: checkpoints/smollm2_135m
+last: 3
+
+model: HuggingFaceTB/SmolLM2-135M
+model_type: training-state
+
+method: ties
+
+# Fraction of delta weights to keep (0-1). Lower = more aggressive pruning.
+density: 0.5
+
+# Base model for computing deltas (default: first checkpoint)
+# base_model: checkpoints/smollm2_135m/step_1000
+
+output: exports/smollm2_135m_ties
+dtype: bfloat16

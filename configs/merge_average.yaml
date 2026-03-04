@@ -1,0 +1,7 @@
+checkpoint_dir: /home/ubuntu/tether-assessment/exports/cpt_smollm2_135m_nemotron_hf
+last: 5
+model: HuggingFaceTB/SmolLM2-135M
+model_type: hf-native 
+method: linear
+output: exports/cpt_smollm2_135m_nemotron_hf_merged
+dtype: bfloat16

@@ -1,0 +1,36 @@
+# SmolLM2-135M continued pretraining with HuggingFace Trainer
+# Usage: tether pretrain --config configs/smollm2_135m_hf_trainer.yaml
+
+# Model
+hf_checkpoint: HuggingFaceTB/SmolLM2-135M
+
+# Data
+datamix_config: configs/datamix/datamix_nemotron.yaml
+seq_len: 2048
+
+# Optimization
+learning_rate: 1.0e-5
+lr_schedule: constant
+min_lr_ratio: 0.1
+warmup_steps: 200
+total_steps: 10000
+weight_decay: 0.1
+beta1: 0.9
+beta2: 0.95
+max_grad_norm: 1.0
+batch_size_per_gpu: 8
+gradient_accumulation_steps: 1
+dtype: bfloat16
+export_hf: True
+tp_size: 3
+
+# Checkpointing
+checkpoint_dir: checkpoints/cpt_smollm2_135m_nemotron_hf_tp3
+save_interval: 100
+
+# Logging
+log_interval: 10
+log_dir: logs/cpt_smollm2_135m_nemotron_hf_tp3
+
+# DataLoader
+num_workers: 4

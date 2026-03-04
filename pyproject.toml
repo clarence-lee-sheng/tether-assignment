@@ -1,0 +1,57 @@
+
+[project]
+name = "tether"
+version = "0.1.0"
+description = "A library for continued pretraining data pipelines"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+dependencies = [
+    "typer>=0.12",
+    "datasets==3.6.0",
+    "huggingface-hub>=0.21",
+    "transformers @ git+https://github.com/huggingface/transformers@3c18d71464871a8496162af0c6a74ed554f693a9",
+    "ray[data]>=2.10",
+    "numpy>=1.24",
+    "pyarrow>=14.0",
+    "jinja2>=3.1",
+    "tqdm>=4.66",
+    "torch>=2.4",
+    "pyyaml>=6.0",
+    "safetensors>=0.4",
+    "vllm==0.9.1",
+    "lighteval[extended_tasks,multilingual] @ git+https://github.com/huggingface/lighteval.git@2788496c3ef9973a24c7d8b87ee5b2cceb430872",
+    "safetensors>=0.4",
+    "accelerate>=0.26",
+    "language_data",
+    "more_itertools",
+    "langcodes",
+    "flash-attn",
+    "mergekit>=0.0.5",
+    "tensorboard"
+]
+
+[tool.uv]
+no-build-isolation-package = ["flash-attn"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "ruff>=0.3",
+]
+
+[tool.uv.extra-build-dependencies]
+    flash-attn = ["torch"]
+
+[project.scripts]
+tether = "tether.cli.main:cli"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tether"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

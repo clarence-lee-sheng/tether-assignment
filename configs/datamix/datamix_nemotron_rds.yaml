@@ -1,0 +1,20 @@
+# Smollm + nemotron datasets + rds 
+seq_len: 2048
+seed: 42
+datasets:
+  - path: data/tokenized_2/cosmopedia-v2/cosmopedia-v2
+    weight: 0.0882
+    name: cosmopedia-v2
+  - path: data/tokenized_2/fineweb-edu-dedup/fineweb-edu-dedup
+    weight: 0.4118
+    name: fineweb-edu-dedup
+  - path: data/tokenized_2/nemotron-qa/nemotron-qa
+    weight: 0.2
+    name: rds-sels-multitask
+  - path: data/tokenized_2/rds-sels-multitask/rds-sels-multitask
+    weight: 0.1
+    name: rds-sels-multitask
+  - path: data/tokenized_2/nemotron-sft-math/nemotron-sft-math
+    weight: 0.1
+    name: nemotron-pretraining-sft-v1-math
+

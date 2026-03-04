@@ -1,0 +1,42 @@
+# SmolLM2-135M on-policy distillation with HuggingFace Trainer
+# Usage: tether distill --config configs/distill_smollm2_135m_hf_trainer.yaml
+
+# Student model
+hf_checkpoint: HuggingFaceTB/SmolLM2-135M
+
+# Teacher model
+teacher: HuggingFaceTB/SmolLM2-1.7B
+teacher_dtype: bfloat16
+
+# Data
+datamix_config: configs/datamix/datamix_nemotron.yaml
+seq_len: 2048
+
+# Distillation
+distill_loss: reverse_kl
+temperature: 1.5
+alpha: 0.7
+
+# Optimization
+learning_rate: 5.0e-6
+lr_schedule: constant
+warmup_steps: 200
+total_steps: 10000
+weight_decay: 0.1
+beta1: 0.9
+beta2: 0.95
+max_grad_norm: 1.0
+batch_size_per_gpu: 4
+gradient_accumulation_steps: 2
+dtype: bfloat16
+
+# Checkpointing
+checkpoint_dir: checkpoints/distill_on_policy_nemotron
+save_interval: 100
+
+# Logging
+log_interval: 10
+log_dir: logs/distill_on_policy_nemotron
+
+# DataLoader
+num_workers: 4

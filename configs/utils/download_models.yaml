@@ -1,0 +1,12 @@
+# Model download configuration
+# Usage: tether download-models --config configs/download_models.yaml
+
+# Global default output directory (can be overridden per-model)
+output_dir: models
+
+models:
+  - model: HuggingFaceTB/SmolLM2-135M
+    output: models/SmolLM2-135M
+
+  - model: HuggingFaceTB/SmolLM2-1.7B
+    output: models/SmolLM2-1.7B

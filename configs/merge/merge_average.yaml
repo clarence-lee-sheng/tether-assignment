@@ -1,0 +1,36 @@
+# Checkpoint averaging (Polyak / SWA-style)
+# Averages the last N checkpoints from a training run.
+#
+# Usage:
+#   tether merge --config configs/merge_average.yaml
+
+# Source checkpoints — pick one:
+#   Option A: auto-discover from a directory
+checkpoint_dir: /home/ubuntu/tether-assessment/exports/distill_on_policy_nemotron
+last: 3
+
+#   Option B: explicit list (uncomment and remove checkpoint_dir/last above)
+# checkpoints:
+#   - checkpoints/smollm2_135m/step_8000
+#   - checkpoints/smollm2_135m/step_9000
+#   - checkpoints/smollm2_135m/step_10000
+
+# Optional per-checkpoint weights (unnormalized, default: uniform)
+# weights: [1.0, 2.0, 3.0]
+
+# Model architecture (required — used to build the model skeleton)
+model: HuggingFaceTB/SmolLM2-135M
+
+# Checkpoint type:
+#   training-state  — custom distributed training (DCP, step_N dirs)
+#   hf              — HF model DCP format (step_N dirs)
+#   tether          — tether LlamaModel DCP format (step_N dirs)
+#   hf-native       — HF Trainer safetensors checkpoints (checkpoint-N dirs)
+model_type: hf-native 
+
+# Merge method (mergekit script only, ignored by merge_checkpoints.py)
+method: linear
+
+# Output
+output: exports/distill_on_policy_nemotron_hf_merged
+dtype: bfloat16
